@@ -17,26 +17,50 @@
 export default {
   data() {
     return {
-      activities: [], // 用於存放運動數據
+      activities: [],
     };
   },
   methods: {
     startOAuth() {
-      // 跳轉到 Strava 的授權頁面
-      const clientId = "YOUR_CLIENT_ID"; // 替換為你的 Strava Client ID
-      const redirectUri = "http://localhost:8080/callback"; // 替換為你的回調地址
-      const scope = "read,activity:read_all"; // 需要的權限
+      const clientId = "144190";
+      const redirectUri = "http://localhost:8080";
+      const scope = "read,activity:read_all";
       const authUrl = `https://www.strava.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}`;
       window.location.href = authUrl;
     },
+    
+    async handleAuthCallback() {
+      // 從 URL 獲取 code
+      const urlParams = new URLSearchParams(window.location.search);
+      const code = urlParams.get('code');
+      
+      if (code) {
+        try {
+          const response = await fetch('http://localhost:5284/api/OAuth/exchange-token', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ code }),
+          });
+
+          if (!response.ok) {
+            throw new Error('Token exchange failed');
+          }
+
+          const data = await response.json();
+          console.log('Token exchange successful:', data);
+          // 這裡可以處理成功後的邏輯，例如獲取運動數據
+          
+        } catch (error) {
+          console.error('Error exchanging token:', error);
+        }
+      }
+    },
+  },
+  mounted() {
+    // 在組件掛載時檢查 URL 是否包含 code
+    this.handleAuthCallback();
   },
 };
 </script>
-
-<style scoped>
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  margin-top: 20px;
-}
-</style>

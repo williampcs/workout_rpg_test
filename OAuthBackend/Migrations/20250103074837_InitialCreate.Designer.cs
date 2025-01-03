@@ -11,7 +11,7 @@ using OAuthBackend.Data;
 namespace OAuthBackend.Migrations
 {
     [DbContext(typeof(OAuthDbContext))]
-    [Migration("20250103024635_InitialCreate")]
+    [Migration("20250103074837_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -24,7 +24,7 @@ namespace OAuthBackend.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("OAuthBackend.Models.UserToken", b =>
+            modelBuilder.Entity("UserToken", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,14 +34,16 @@ namespace OAuthBackend.Migrations
 
                     b.Property<string>("AccessToken")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<int>("ExpiresAt")
                         .HasColumnType("int");
 
                     b.Property<string>("RefreshToken")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.HasKey("Id");
 
