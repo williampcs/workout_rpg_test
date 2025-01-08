@@ -1,3 +1,4 @@
+using Pomelo.EntityFrameworkCore.MySql; // 別忘了要在頂端 using
 using Microsoft.EntityFrameworkCore;
 using OAuthBackend.Data;
 
@@ -11,7 +12,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowVueApp",
-        builder => builder
+        corsBuilder => corsBuilder
             .WithOrigins("http://localhost:8080") // Vue 應用的地址
             .AllowAnyMethod()
             .AllowAnyHeader());
@@ -20,10 +21,12 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 builder.Services.AddHttpClient();
 
-// 添加 DbContext
+// 改用 MySQL
 builder.Services.AddDbContext<OAuthDbContext>(options =>
-    options.UseSqlServer(
+    options.UseMySql(
         builder.Configuration.GetConnectionString("DefaultConnection"),
+        // 版本改成你實際的 MySQL 版本，以下示範 8.0.32
+        new MySqlServerVersion(new Version(8, 0, 32)),
         b => b.MigrationsAssembly("OAuthBackend")
     )
 );
@@ -41,11 +44,8 @@ if (app.Environment.IsDevelopment())
 app.UseCors("AllowVueApp");
 
 app.UseHttpsRedirection();
-
 app.UseRouting();
-
 app.UseAuthorization();
 
 app.MapControllers();
-
 app.Run();

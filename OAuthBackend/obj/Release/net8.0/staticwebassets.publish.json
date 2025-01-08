@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "D+On62gHwzQ1VHxIc4uVK1k9Qf031mMTEUVBKmv/Aqk=",
+  "Source": "OAuthBackend",
+  "BasePath": "_content/OAuthBackend",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
