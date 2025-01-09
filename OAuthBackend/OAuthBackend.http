@@ -1,4 +1,4 @@
-@OAuthBackend_HostAddress = http://localhost:5284
+@OAuthBackend_HostAddress = http://35.212.232.36:5284
 
 GET {{OAuthBackend_HostAddress}}/weatherforecast/
 Accept: application/json

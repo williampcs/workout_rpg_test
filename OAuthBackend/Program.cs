@@ -13,7 +13,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowVueApp",
         corsBuilder => corsBuilder
-            .WithOrigins("http://localhost:8080") // Vue 應用的地址
+            .WithOrigins("http://35.212.232.36:8080") // Vue 應用的地址
             .AllowAnyMethod()
             .AllowAnyHeader());
 });

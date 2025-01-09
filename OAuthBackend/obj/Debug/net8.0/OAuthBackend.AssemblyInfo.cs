@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OAuthBackend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+65b15aa8b11121c37561ab7a15995821e2d5d790")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bd63f4260317bb62c0259113cf1b10c71c6d32cc")]
 [assembly: System.Reflection.AssemblyProductAttribute("OAuthBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OAuthBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

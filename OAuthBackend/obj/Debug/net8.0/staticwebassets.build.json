@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "D6qH3RDDpbWWyW2VLyNnvbWNR1VwuaNsLx1W6Cc+ITg=",
+  "Hash": "mSpiUxVDNezbEho/qO1EWGB1gOnQE/HcSLq6Coe81k0=",
   "Source": "OAuthBackend",
   "BasePath": "_content/OAuthBackend",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

@@ -23,37 +23,39 @@ export default {
   methods: {
     startOAuth() {
       const clientId = "144190";
-      const redirectUri = "http://localhost:8080";
+      const redirectUri = "http://35.212.232.36:8080";
       const scope = "read,activity:read_all";
       const authUrl = `https://www.strava.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}`;
       window.location.href = authUrl;
     },
-    
+
     async handleAuthCallback() {
       // 從 URL 獲取 code
       const urlParams = new URLSearchParams(window.location.search);
-      const code = urlParams.get('code');
-      
+      const code = urlParams.get("code");
+
       if (code) {
         try {
-          const response = await fetch('http://localhost:5284/api/OAuth/exchange-token', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ code }),
-          });
+          const response = await fetch(
+            "http://35.212.232.36:5284/api/OAuth/exchange-token",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ code }),
+            }
+          );
 
           if (!response.ok) {
-            throw new Error('Token exchange failed');
+            throw new Error("Token exchange failed");
           }
 
           const data = await response.json();
-          console.log('Token exchange successful:', data);
+          console.log("Token exchange successful:", data);
           // 這裡可以處理成功後的邏輯，例如獲取運動數據
-          
         } catch (error) {
-          console.error('Error exchanging token:', error);
+          console.error("Error exchanging token:", error);
         }
       }
     },
